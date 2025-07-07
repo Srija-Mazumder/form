@@ -7,7 +7,9 @@
 }
 .h-head{
   text-align: center;
-    margin: 14px;
+    margin-top: -27px;
+    padding-top: -16px;
+   
 }
 
 
@@ -16,7 +18,7 @@
 }
 
 .im{
-    height: 127px;
+   height: 120px;
    text-align: center;
    padding-top: 120px;
    border: 1px dashed rgba(150, 147, 147, 0.4);
@@ -28,11 +30,11 @@
 }
 .reset{
     background-color: rgba(236, 234, 234, 0.7);
-    border-radius: 4%;
-    width: auto;
+    border-radius: 4px;
+    width: 69px;
     height: auto;
     font-size: smaller;
-    padding: 8px;
+    padding: 9px;
 }
 
 .submit{
@@ -40,7 +42,7 @@
     color: white;
     align-items: end;
     padding: 8px;
-    border-radius: 4%;
+    border-radius: 4px;
     width: auto;
     height: auto;
     font-size: smaller;
@@ -50,26 +52,81 @@
 }
 .cat{
     font-weight: 500;
+    border-color: red;
 }
 
 
 form{
     border:1px solid rgb(219, 219, 219);
-    box-shadow:  0px 2px 12px gray;
-    width: 60%;
+    box-shadow:  0px 1px 3px rgb(211, 211, 211);
+    width: 67%;
     margin: auto;
 }
 
-input[type='text']{
-    /* border-color: rgba(236, 234, 234, 0.3); */
-    border: 1pt solid ;
+input[type='text']{ 
+    border: 1px solid rgba(119,119,119,0.4);
+    border-radius: 4px;
     outline: none;
-    border-color: red;
+    height: 40px;
+    
    
 }
 
-#sum{
-    /* border-color: 1px solid rgb(219, 219, 219); */
-    border-color: red;
+input[type='date']{
+    border: 1px solid rgba(119,119,119,0.4);
+    border-radius: 4px;
+    height: 40px;
+}
+
+input[type='email']{
+    border: 1px solid rgba(119,119,119,0.4);
+    border-radius: 4px;
+    height: 40px;
+}
+
+input[type='time']{
+    border: 1px solid rgba(119,119,119,0.4);
+    border-radius: 4px;
+    height: 40px;
+}
+
+input[type='file']{
+    align-items: center;
+    width: 101px;
+}
+#sum, #summ{
+     border: 1px solid rgba(119,119,119,0.4);
+    border-radius: 4px;
 
 }
+
+#pet-select {
+    width: 100%; 
+    border: 1px solid rgba(119,119,119,0.4);
+    height: 40px;
+    border-radius: 4px;
+}
+
+.dropdown {
+    width: 100%;
+}
+
+
+.terms{
+    margin-bottom: -37px;
+    padding-bottom: -14px;
+}
+  
+
+.thumbnail{
+    height: 29px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+  
+
+
+
+
