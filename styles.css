@@ -127,6 +127,30 @@ input[type='file']{
 }
   
 
+.dragbutton{
+    background-image: url();
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    border: 1pt solid red;
+}
 
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #d0ebff;
+  color: #003566;
+  border-radius: 20px;
+  margin: 3px;
+  font-size: 14px;
+}
+
+.tag .close-btn {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #dc3545;
+}
 
 
