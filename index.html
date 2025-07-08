@@ -11,7 +11,7 @@
 
 <div class="og d-flex">
     <div class="form container-fluid rounded p-4">
-    <form action="" class="f p-5 ">
+    <form action="" class="f p-5 "  name="myform"onsubmit="return validateForm()">
         <h3 class="h-head container-fluid"> News Submission Form </h3>
 
 
@@ -60,53 +60,50 @@
 
         <div class="publish container-fluid d-flex  my-3 px-1">
             <div class="datep  col-6  flex-column px-1">
-                <label for="datepublish" class="cat my-2 " id="datep" > Publish Date* </label>
-                <input type="date" name="datepub" id="datepubli" class="col-12 px-3" pattern="\d{2}-\d{2}-\d{4}" placeholder="mm/dd/yyyy" oninput="dateVali(this.value)" ></i>
+                <label for="datepublish" class="cat my-2 " id="datep">Publish Date*</label>
+                <input type="text" name="datepub" id="datepubli" class="col-12 px-3" placeholder="mm/dd/yyyy"  onfocus="(this.type='Date')" oninput="dateVali(this.value)" >
+                <p id="pdate"></p>
             </div>
 
             <div class="timep col-6  flex-column px-1">
                 <label for="datepublish" class="cat my-2" id="datep" > Publish Time </label>
-                <input type="time" name="timepub" id="timepubli" class="col-12 px-3" placeholder="--:-- --" oninput="timeVali(this.value)" >
+                <input type="text" name="timepub" id="timepubli" class="col-12 px-3" placeholder="--:-- --" onfocus="(this.type='Time')"  oninput="timeVali(this.value)" >
+                <p class="ptime"></p>
             </div>
         </div>
 
 
         
-        <div class="category container-fluid  my-3">
-            <label for="" class="cat text-left "> Category*</label>
-            <div class="dropdown col-12" >
-                    <select name="pets" id="pet-select" class=" col-12 px-3" style="height: 40px;">
-                        <option value="" > Select a category </option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        <option value="hamster">Hamster</option>
-                        <option value="parrot">Parrot</option>
-                        <option value="spider">Spider</option>
-                        <option value="goldfish">Goldfish</option>
-                    </select>
+       <div class="category container-fluid my-3">
+            <label class="cat text-left">Category*</label>
+            <div id="dropdown" class="dropdown col-12 p-3 my-2" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; cursor: pointer; position: relative;">
+                <div id="selected-tags" class="mb-2 d-flex flex-wrap"></div>
+                <div id="dropdown-content" class="dropdown-menu p-2" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1; background: white; border: 1px solid #ccc; width: 100%;">
+                </div>
             </div>
         </div>
+
 
         
                 
-        <div class="tags container-fluid col-12 my-2">
-            <label for="" class="cat my-2"> Tags </label>
-            <div class="check ">
-                <input type="checkbox" name="tag" id="tag">
-                <label for="tag" class="t p-1"> Breaking </label>
-                <input type="checkbox" name="tag" id="tag" >
-                <label for="tag" class="t p-1"> Exclusive </label>
-                <input type="checkbox" name="tag" id="tag">
-                <label for="tag" class="t p-1"> Analysis </label>
-                <input type="checkbox" name="tag" id="tag">
-                <label for="tag" class="t p-1"> Interview </label>
-            </div>
-        </div>
+      <div class="tags container-fluid my-2">
+    <label for="" class="cat my-1">Tags</label>
+    <div class="check my-1 col-12">
+        <textarea name="tag" id="tg" class="col-12 rounded" style="border-color: rgb(167, 170, 170);" placeholder="Type a tag and press Enter or comma"></textarea>
+        <div class="tag-output d-flex flex-wrap mt-2"></div>
+        <div class="error text-danger mt-1 p-2" style="display: none;">Please enter at least one tag.</div>
+    </div>
+</div>
+
             
-        <div class="location container-fluid  my-2 ">
-                <label for="" class="cat my-2"> Location </label>
-                <input type="text" class="textbox col-12" >
-        </div>
+
+       <div class="location container-fluid my-2">
+    <label for="" class="cat my-1">Location</label>
+    <input type="text" class="textbox col-12" placeholder="Enter location and press Enter or comma">
+    <output class="loc d-flex flex-wrap mt-1"></output>
+    <div class="error text-danger mt-1 p-2" style="display: none;">Please enter at least one location.</div>
+</div>
+
             
 
 
@@ -121,36 +118,34 @@
             <label for="" class="cat my-2"> Featured Image* </label>
             <p class="col-12  p-4 im">Click to upload or drag and drop <br> Recommended size: 1200x630 pixels
             <br>
-                <input class="file-uploader mt-2" type="file" onchange="upload()" accept="image/*"/>
+                <input class="file-uploader mt-2" type="file" accept="image/*" multiple="multiple" />
              </p>
-              <output class="imgo"></output>
+              <output class="imgi"></output>
         </div>
             
 
 
-   <div class="galleryimg container-fluid my-1">
-  <label for="" class="cat my-2"> Gallery Images (Max 5) </label>
-  <p class="col-12 p-3 im">Click to upload or drag and drop multiple images <br>
-    <input class="file-uploader m-2" type="file" accept="image/*" id="files" multiple="multiple" />
-  </p>
-  <output class="imgo"></output>
-</div>
-
-
-
-
-        <div class="videourl container-fluid  my-2">
-            <label for="" class="cat my-2"> Video URL (Optional) </label>
-            <input type="text" class="textbox col-12" >
+        <div class="galleryimg container-fluid my-1">
+            <label for="" class="cat my-2"> Gallery Images (Max 5) </label>
+            <p class="col-12 p-3 im">Click to upload or drag and drop multiple images <br>
+                <input class="file-uploader m-2" type="file" accept="image/*" id="files" multiple="multiple" />
+            </p>
+            <output class="imgo"></output>
         </div>
 
 
 
-        <div class="realtedarticles container-fluid  my-2">
-            <label for="" class="cat my-3"> Realted Articles (comma separated URLs) </label>
-            <textarea name="" id="sum" rows="2" class="col-12 "></textarea>
+        <div class="videourl container-fluid my-2">
+            <label class="cat my-2">Video URL (Optional)</label>
+                <input type="text" class="textbox col-12" id="videoUrlInput">
+                <output class="isValidurl d-flex flex-wrap gap-2 mt-2"></output>
         </div>
 
+        <div class="realtedarticles container-fluid my-2">
+            <label class="cat my-3">Related Articles (comma separated URLs)</label>
+             <textarea id="articleUrlsInput" rows="2" class="col-12" onclick="addArticleUrls() "></textarea>
+             <output class="urls d-flex flex-wrap gap-2"></output>
+        </div>
 
 
         <div class="terms px-1 mt-2">
@@ -159,8 +154,8 @@
                 <label for="agree" class="px-1 inp"> I agree to the terms and conditions* </label>
             </div>
             <div class="but d-flex justify-content-between px-1 my-2">
-                <button class="reset border-0 my-1"> Reset </button>
-                <button class="submit border-0 my-1"> Submit News </button>
+                  <input type="submit" value="Reset" class="reset border-0 my-1">
+                  <input type="submit" value="Submit News" class="submit border-0 my-1">
             </div>
         </div>
 
