@@ -11,7 +11,7 @@
 
 <div class="og d-flex">
     <div class="form container-fluid rounded p-4">
-    <form action="" class="f p-5 "  name="myform"onsubmit="return validateForm()">
+    <form  class="f p-5 "  name="myform" onsubmit="return validateForm()">
         <h3 class="h-head container-fluid"> News Submission Form </h3>
 
 
@@ -25,7 +25,7 @@
              <div class="timep col-6 d-flex flex-column px-1">
                 <label for="subhead" class="cat my-2" id="sub" > Subheading </label>
                 <input type="text" name="subheadi" id="subheadi"  class="col-12 px-3 " style="height: 40px;" oninput="headValids(this.value)">
-                <p class="heads"></p>
+                <p class="heads text-danger"></p>
             </div>
        </div>
 
@@ -33,14 +33,16 @@
         <div class="sechead container-fluid py-1 px-1">
             <label class="cat my-2" maxlength="200" id ="summary"> Summary* </label>
            <textarea id="sum" name="summar" class="col-12" rows="3" maxlength="200" oninput="updateCount()"> </textarea>
-           <small id="charCount" class="text-muted">0 / 200 characters</small>
+           <small id="charCount"> 0 / 200 characters</small>
+            <div class="errorSum text-danger ml-6" style="display: none; color: red; font-weight: 300;"> Summary can not be empty.</div>
         </div>
 
 
         <div class="full container-fluid py-1 px-1">
             <label class="cat my-2"> Full Story* </label>
             <textarea id="summ" name="fulls"  rows="5" class="col-12" maxlength="3000" oninput="updateCounts()"></textarea>
-             <small id="charCounts" class="text-muted">0 / 3000 characters</small>
+             <small id="charCounts">0 / 3000 characters</small>
+                 <div class="errorFull text-danger mt-1" style="display: none;">Full Story can not be empty.</div> 
         </div>
 
         <div class="author container-fluid d-flex px-1 my-1">
@@ -48,12 +50,14 @@
                 <label for="authorname" class="cat my-2"> Author* </label>
                 <input type="text" id="auth" name="auth" class="col-12" oninput="validName(this.value)">
                 <p class="authname"></p>
+                 <div class="error text-danger mt-1" style="display: none;">Author name can not be empty.</div> 
             </div>
 
         <div class="authm d-flex col-6  flex-column px-1">
             <label for="authormail" class="cat my-2"> Author Email* </label>
             <input type="email" id="authe" name="authe" class="col-12" oninput="validEmail(this.value)">
             <p class="valn"></p>
+            <div class="error text-danger mt-1" style="display: none;">Author mail can not be empty.</div> 
         </div>
         </div>
 
@@ -63,25 +67,29 @@
                 <label for="datepublish" class="cat my-2 " id="datep">Publish Date*</label>
                 <input type="text" name="datepub" id="datepubli" class="col-12 px-3" placeholder="mm/dd/yyyy"  onfocus="(this.type='Date')" oninput="dateVali(this.value)" >
                 <p id="pdate"></p>
+                    <div class="error text-danger mt-1" style="display: none;"> Publish Date can not be empty h.</div> 
             </div>
 
             <div class="timep col-6  flex-column px-1">
                 <label for="datepublish" class="cat my-2" id="datep" > Publish Time </label>
                 <input type="text" name="timepub" id="timepubli" class="col-12 px-3" placeholder="--:-- --" onfocus="(this.type='Time')"  oninput="timeVali(this.value)" >
-                <p class="ptime"></p>
+                <p class="ptime" id="ptime"></p>
+                    <div class="error text-danger mt-1" style="display: none;">Publish time can not be empty hi.</div> 
             </div>
         </div>
 
 
         
-       <div class="category container-fluid my-3">
-            <label class="cat text-left">Category*</label>
-            <div id="dropdown" class="dropdown col-12 p-3 my-2" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; cursor: pointer; position: relative;">
-                <div id="selected-tags" class="mb-2 d-flex flex-wrap"></div>
-                <div id="dropdown-content" class="dropdown-menu p-2" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1; background: white; border: 1px solid #ccc; width: 100%;">
-                </div>
-            </div>
-        </div>
+      <div class="category container-fluid my-3">
+  <label class="cat text-left">Category*</label>
+  <div id="dropdown" class="dropdown col-12 p-3 my-2" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; cursor: pointer; position: relative;">
+    <div id="selected-tags" class="mb-2 d-flex flex-wrap"></div>
+    <div id="dropdown-content" class="dropdown-menu p-2" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1; background: white; border: 1px solid #ccc; width: 100%;">
+    </div> 
+    <div class="error text-danger" style="display: none;">Atleast one category must be selected.</div> 
+  </div>
+</div>
+
 
 
         
@@ -89,9 +97,9 @@
       <div class="tags container-fluid my-2">
     <label for="" class="cat my-1">Tags</label>
     <div class="check my-1 col-12">
-        <textarea name="tag" id="tg" class="col-12 rounded" style="border-color: rgb(167, 170, 170);" placeholder="Type a tag and press Enter or comma"></textarea>
+        <textarea name="tag" id="tg" class="col-12 rounded" style="border-color: rgb(167, 170, 170);"></textarea>
         <div class="tag-output d-flex flex-wrap mt-2"></div>
-        <div class="error text-danger mt-1 p-2" style="display: none;">Please enter at least one tag.</div>
+        <div class="error text-danger" style="display: none;">Please enter at least one tag.</div>
     </div>
 </div>
 
@@ -99,17 +107,16 @@
 
        <div class="location container-fluid my-2">
     <label for="" class="cat my-1">Location</label>
-    <input type="text" class="textbox col-12" placeholder="Enter location and press Enter or comma">
+    <input type="text" class="textbox col-12" >
     <output class="loc d-flex flex-wrap mt-1"></output>
-    <div class="error text-danger mt-1 p-2" style="display: none;">Please enter at least one location.</div>
+    <div class="error text-danger" style="display: none;">Please enter at least one location.</div>
 </div>
-
-            
-
 
         <div class="sourceurl container-fluid my-1">
             <label for="" class="cat my-2"> Source URL </label>
-            <input type="text" class="textbox col-12" >
+            <input type="text" class="textbox col-12"  id="videoUrlInput">
+            <output class="sorurl"></output>
+               <div class="error text-danger" style="display: none;"> This field can not be empty.</div> 
         </div>
             
 
@@ -121,6 +128,7 @@
                 <input class="file-uploader mt-2" type="file" accept="image/*" multiple="multiple" />
              </p>
               <output class="imgi"></output>
+                 <div class="error text-danger" style="display: none;">One image atleast must be uploaded</div> 
         </div>
             
 
@@ -131,30 +139,34 @@
                 <input class="file-uploader m-2" type="file" accept="image/*" id="files" multiple="multiple" />
             </p>
             <output class="imgo"></output>
+                <div class="error text-danger" style="display: none;">One image atleast must be uploaded</div> 
         </div>
 
 
 
         <div class="videourl container-fluid my-2">
-            <label class="cat my-2">Video URL (Optional)</label>
-                <input type="text" class="textbox col-12" id="videoUrlInput">
+            <label class="cat my-2"> Video URL (Optional)</label>
+                <input type="text" class="textbox col-12" id="videoUrlInputs"> 
                 <output class="isValidurl d-flex flex-wrap gap-2 mt-2"></output>
         </div>
 
-        <div class="realtedarticles container-fluid my-2">
+       <div class="realtedarticles container-fluid my-2">
             <label class="cat my-3">Related Articles (comma separated URLs)</label>
-             <textarea id="articleUrlsInput" rows="2" class="col-12" onclick="addArticleUrls() "></textarea>
-             <output class="urls d-flex flex-wrap gap-2"></output>
+            <textarea id="articleUrlsInput" rows="2" class="col-12"></textarea>
+            <output class="urls d-flex flex-wrap gap-2 mt-2"></output>
+            <p class="url-error text-danger mt-1"></p>
+            <div class="error text-danger" style="display: none;">Related articles field cannot be empty.</div>
         </div>
 
 
         <div class="terms px-1 mt-2">
             <div class="inpu px-1">
                 <input type="checkbox" name="terms" id="terms" class="">
-                <label for="agree" class="px-1 inp"> I agree to the terms and conditions* </label>
+                <label for="agree" class="px-1 inp mb-2"> I agree to the terms and conditions* </label>
             </div>
+            <div class="term" style="display: none;"> You must agree to the terms </div>
             <div class="but d-flex justify-content-between px-1 my-2">
-                  <input type="submit" value="Reset" class="reset border-0 my-1">
+                  <input type="reset" value="Reset" class="reset border-0 my-1">
                   <input type="submit" value="Submit News" class="submit border-0 my-1">
             </div>
         </div>
@@ -164,5 +176,6 @@
 </div>
   
 <script src="../script.js"></script>
+<script src="../app.js"></script>
 </body>
 </html>
