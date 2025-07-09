@@ -6,7 +6,7 @@
     border: 1pt solid black;
 }
 .h-head{
-  text-align: center;
+   text-align: center;
     margin-top: -27px;
     padding-top: -16px;
    
@@ -139,18 +139,18 @@ input[type='file']{
   display: inline-flex;
   align-items: center;
   padding: 5px 10px;
-  background-color: #d0ebff;
-  color: #003566;
+  color: #0d0d0e;
   border-radius: 20px;
   margin: 3px;
   font-size: 14px;
 }
 
-.tag .close-btn {
+.tag .btn-close {
   margin-left: 8px;
   cursor: pointer;
   font-weight: bold;
-  color: #dc3545;
+  color: #030202;
+  background-color: red;
 }
 
 
