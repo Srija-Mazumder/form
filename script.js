@@ -1,67 +1,14 @@
-// document.getElementById("myform").addEventListener("submit", function(event) {
-//     event.preventDefault(); 
-
-//     let isValid = true;
-//     const form = this;
-//     const headline = form["headi"].value.trim();
-//     const subheading = form["subheadi"].value.trim();
-//     const summary = form["summar"].value.trim();
-//     const fullStory = form["fulls"].value.trim();
-//     const authorName = form["autori"].value.trim();
-//     const authorMail = form["authorm"].value.trim();
-//     const pdate = form["pdate"].value.trim();
-//     const ptime = form["ptime"].value.trim();
-//     const category = form["category"].value.trim();
-//     const sourceURL = form["source"].value.trim();
-//     const videoURL = form["video"].value.trim();
-//     const relArt = form["related"].value.trim();
-//     const img1 = form["img1"].value.trim();
-//     const img2 = form["img2"].value.trim();
-//     const termsChecked = document.getElementById("terms").checked;
-
-//     if (!headValid(headline)) isValid = false;
-//     if (!headValids(subheading)) isValid = false;
-//     if (!updateCount()) isValid = false;
-//     if (!updateCounts()) isValid = false;
-//     if (!mailVal(authorMail)) isValid = false;
-//     if (!dateVali(pdate)) isValid = false;
-//     if (!timeVal(ptime)) isValid = false;
-//     if (!urlVal(sourceURL, 'source')) isValid = false;
-//     if (!urlVal(videoURL, 'video')) isValid = false;
-//     if (!validateRelatedArticles(relArt)) isValid = false;
-//     if (!validateImage(img1, 'img1')) isValid = false;
-//     if (!validateImage(img2, 'img2')) isValid = false;
-//     if (!validateCategory(category)) isValid = false;
-//     if (!nameValid(authorName)) isValid = false;
-
-
-//     if (!termsChecked) {
-//         alert("You must agree to the terms and conditions.");
-//         isValid = false;
-//     }
-
-//     if (isValid) {
-//         form.submit();
-//     }
-// });
-
-
-
 
 function headValid(texts) {
     const t = String(texts).toLowerCase().trim();
     const rg = /^[a-z0-9]/;
     const he = document.querySelector("p.head");
 
-    if (t.length === 0) {
-        he.innerHTML = "Headline must not be empty";
+    if (!t.length || t.length < 5) {
+        he.innerHTML = "Headline must be 5 characters atleast";
         he.style.color = "red";
-    } else if (rg.test(t)) {
-        he.innerHTML = "Valid Text";
-        he.style.color = "green";
-    } else {
-        he.innerHTML = "Invalid Text";
-        he.style.color = "red";
+    } else{
+      he.innerHTML = "";
     }
 }
 
@@ -71,148 +18,212 @@ function headValids(texts) {
     const rg = /^[a-z0-9]/;
     const he = document.querySelector("p.heads");
 
-    if (t.length === 0) {
-        he.innerHTML = "Subheading must not be empty";
+    if (t.length  < 3 ) {
+        he.innerHTML = "Subheading must be 3 characters atleast.";
         he.style.color = "red";
-    } else if (rg.test(t)) {
-        he.innerHTML = "Valid Text";
-        he.style.color = "green";
-    } else {
-        he.innerHTML = "Invalid Text";
-        he.style.color = "red";
+    } else{
+      he.innerHTML = "";
     }
 }
+
+
+function validateSummary() {
+    const textarea = document.getElementById("sum");
+    const charCount = document.getElementById("charCount");
+    
+    if (!textarea.value.trim()) {
+        charCount.innerHTML = "Summary must not be empty";
+        charCount.style.color = "red";
+        return false;
+    }  else {
+        charCount.textContent = `${textarea.value.length} / 200 characters`;
+        charCount.style.color = "gray";
+        return true;
+    }
+}
+
+
+function validateDetailSummary() {
+    const textarea = document.getElementById("summ");
+    const charC = document.getElementById("charCounts");
+    const length = textarea.value.trim().length;
+
+      if (length <= 0) {
+      charC.innerHTML = "Full story must not be empty";
+      charC.style.color = "red";
+      return false;
+      }  else {
+      charC.textContent = `${length} / 3000 characters`;
+      charC.style.color = "gray";
+      return true;
+      }
+      }
 
 
 function updateCount() {
     const textarea = document.getElementById("sum");
     const charCount = document.getElementById("charCount");
-    const zz =  charCount.textContent = `${textarea.value.length} / 200 characters`;
+    const value = textarea.value.trim();
+    const length = value.length;
 
-    if (!document.forms["myforms"]["summar"].value){
-      document.getElementById("charCount").innerHTML = "Summary must not be empty";
-      document.getElementById("charCount").style.color = "red";
-    }else {
-  document.getElementById("charCount").style.color = "gray";
-}
+    if (!value) {
+        charCount.innerHTML = "Summary must not be empty";
+        charCount.style.color = "red";
+    } else {
+        charCount.textContent = `${length} / 200 characters`;
+        charCount.style.color = "gray";
+    }
 }
 
-function updateCounts(){
+
+function updateCounts() {
     const textarea = document.getElementById("summ");
     const charC = document.getElementById("charCounts");
-    charC.textContent = `${textarea.value.length} / 3000 characters`;
+    const value = textarea.value.trim();
+    const length = value.length;
 
-    if (!textarea.value){
-      document.getElementById("charCounts").innerHTML = "Summary must not be empty";
-      document.getElementById("charCounts").style.color = "red";
-    }else {
-  document.getElementById("summaryError").style.color = "gray";
+    if (!value) {
+        charC.innerHTML = "Full story must not be empty";
+        charC.style.color = "red";
+    } else {
+        charC.textContent = `${length} / 3000 characters`;
+        charC.style.color = "gray";
+    }
 }
-}
 
- function validEmail(mail) {
-  const s = String(mail).trim().toLowerCase(); 
-  const rg = /^[a-z0-9._%+-]+@[a-z.-]+\.[a-z]{2,}$/;
-  const he = document.querySelector("p.valn")
 
-   if (s.length === 0) {
+function validEmail(mail) {
+    const s = String(mail).trim().toLowerCase(); 
+    const rg = /^[a-z0-9._%+-]+@[a-z.-]+\.[a-z]{2,}$/;
+    const he = document.querySelector("p.valn");
+
+    if (s.length === 0) {
         he.innerHTML = "Author mail must not be empty";
         he.style.color = "red";
+        return false;
     } else if (rg.test(s)) {
-        he.innerHTML = "Valid Author mail";
-        he.style.color = "green";
+        he.innerHTML = "";
+        return true;
     } else {
         he.innerHTML = "Invalid Author mail";
         he.style.color = "red";
+        return false;
     }
 }
 
 function validName(name) {
-  const s = String(name).trim().toLowerCase(); 
-  const rg = /^[a-z]+ [a-z]+$/;
-  const he = document.querySelector("p.authname")
+    const s = String(name).trim().toLowerCase(); 
+    const rg = /^[a-z]+ [a-z]+$/;
+    const he = document.querySelector("p.authname");
 
-   if (s.length === 0) {
+    if (s.length === 0) {
         he.innerHTML = "Author name must not be empty";
         he.style.color = "red";
+        return false;
     } else if (rg.test(s)) {
-        he.innerHTML = "Valid Author Name";
-        he.style.color = "green";
+        he.innerHTML = "";
+        return true;
     } else {
         he.innerHTML = "Invalid Author Name";
         he.style.color = "red";
+        return false;
     }
 }
 
 
-function dateVali(dates){
-    da = String(dates);
-    d = da.split("-");
+function dateVali(dates) {
+    let isValid = true;
+    const da = String(dates);
+    const d = da.split("-");
+
     if (d.length !== 3) {
-    console.log("Invalid date format. Expected format: YYYY-MM-DD");
-    return false;
-  }
+        console.log("Invalid date format. Expected format: YYYY-MM-DD");
+        document.getElementById("pdate").innerHTML = "Date is invalid";
+        document.getElementById("pdate").style.color = "red";
+        return false;
+    }
+
+    let year, month, day;
 
     d.forEach((element, index) => {
-    if (isNaN(element)) {
-      console.log(`Invalid value: ${element} is not a number`);
-      isValid = false;
-      return;
+        if (isNaN(element)) {
+            console.log(`Invalid value: ${element} is not a number`);
+            isValid = false;
+            return;
+        }
+        const num = parseInt(element, 10);
+
+        if (index === 0) {
+            year = num;
+            if (num < 1000 || num > 9999) {
+                console.log(`Invalid year: ${num}`);
+                isValid = false;
+            }
+        } else if (index === 1) {
+            month = num;
+            if (num < 1 || num > 12) {
+                console.log(`Invalid month: ${num}`);
+                isValid = false;
+            }
+        } else if (index === 2) {
+            day = num;
+            if (num < 1 || num > 31) {
+                console.log(`Invalid day: ${num}`);
+                isValid = false;
+            }
+        }
+    });
+
+    if (isValid) {
+        const inputDate = new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); 
+
+        if (inputDate > today) {
+            console.log("Future date not allowed");
+            document.getElementById("pdate").innerHTML = "Please select a publish date till today.";
+            document.getElementById("pdate").style.color = "red";
+            return false;
+        }
     }
-    const num = parseInt(element, 10);
 
-    if (index === 0) {
-      if (num < 1000 || num > 9999) {
-        console.log(`Invalid year: ${num}`);
-        isValid = false;
-      }
-    } else if (index === 1) {
-      if (num < 1 || num > 12) {
-        console.log(`Invalid month: ${num}`);
-        isValid = false;
-      }
-    } else if (index === 2) {
-      if (num < 1 || num > 31) {
-        console.log(`Invalid day: ${num}`);
-        isValid = false;
-      }
+    if (isValid) {
+        console.log("Date is valid");
+        document.getElementById("pdate").innerHTML = "Date is valid";
+        document.getElementById("pdate").style.color = "green";
+    } else {
+        document.getElementById("pdate").innerHTML = "Date is invalid";
+        document.getElementById("pdate").style.color = "red";
     }
-  });
 
-  if (isValid) {
-    console.log("Date is valid");
-    document.getElementById("pdate").innerHTML = "Date is valid";
-    document.getElementById("pdate").style.color = "green";
-  } else {
-    document.getElementById("pdate").innerHTML = "Date is invalid";
-    document.getElementById("pdate").style.color = "red";
-  }
-
-  return isValid;
+    return isValid;
 }
+
 
 
 function timeVali(time) {
     const timePattern = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
     if (!timePattern.test(time)) {
-        document.querySelector(".ptime").innerHTML = "Please enter time in 24 clock format";
+        document.querySelector(".ptime").innerHTML = "Please enter time in 24-hour format (HH:MM)";
         document.querySelector(".ptime").style.color = "red";
         return false;
     }
 
     const [hours, minutes] = time.split(":").map(Number);
-    const totalMinutes = hours * 60 + minutes;
+    const totalInputMinutes = hours * 60 + minutes;
 
-    const minTime = 0 * 60;   
-    const maxTime = 24 * 60;  
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-    if (totalMinutes < minTime || totalMinutes > maxTime) {
-        document.querySelector(".ptime").innerHTML = "Please enter time between 9 and 6";
+    if (totalInputMinutes > currentMinutes) {
+        document.querySelector(".ptime").innerHTML = "Future time is not allowed";
         document.querySelector(".ptime").style.color = "red";
         return false;
     }
 
+    document.querySelector(".ptime").innerHTML = "Valid time";
+    document.querySelector(".ptime").style.color = "green";
     return true;
 }
 
@@ -367,8 +378,8 @@ options.forEach(option => {
 });
 
 dropdown.addEventListener('click', (e) => {
-  if (e.target.id !== "dropdown-content" && e.target.tagName !== "INPUT") {
-    dropdownContent.style.display = dropdownContent.style.display === 'none' ? 'block' : 'none';
+  if (!dropdownContent.contains(e.target)) {
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
   }
 });
 
@@ -378,17 +389,18 @@ document.addEventListener('click', function (event) {
   }
 });
 
-
 // -------------------------------------------------
 function isValidUrl(url) {
   const pattern = /^(https?:\/\/)[^\s/$.?#].[^\s]*$/i;
   return pattern.test(url);
 }
 
+
+
 document.getElementById("videoUrlInput").addEventListener("keydown", function (event) {
   const key = event.key;
   const url = this.value.trim();
-  const output = document.querySelector("output.isValidurl");
+  const output = document.querySelector("output.sorurl");
 
   if ((key === "Enter" || key === ",")) {
     event.preventDefault(); 
@@ -399,11 +411,50 @@ document.getElementById("videoUrlInput").addEventListener("keydown", function (e
       this.value = "";
     } 
     else {
-      document.querySelector("output.urls").innerHTML = "Invalid URL , Enter a proper one";
-      document.querySelector("output.urls").style.color = "red";
+      output.innerHTML = "";
+      output.style = "";
+      document.querySelector(".sorurl").innerHTML = "Invalid URL , Enter a proper one";
+      document.querySelector(".sorurl").style.color = "red";
     }
   }
 });
+
+
+document.getElementById("videoUrlInputs").addEventListener("keydown", function (event) {
+  const key = event.key;
+  const url = this.value.trim();
+
+  const output = document.querySelector("output.isValidurl");
+  let tagsContainer = output.querySelector(".url-tags");
+  if (!tagsContainer) {
+    tagsContainer = document.createElement("div");
+    tagsContainer.className = "url-tags d-flex flex-wrap gap-2";
+    output.appendChild(tagsContainer);
+  }
+
+  let errorDisplay = output.querySelector(".url-error");
+  if (!errorDisplay) {
+    errorDisplay = document.createElement("p");
+    errorDisplay.className = "url-error mt-1 text-danger";
+    output.appendChild(errorDisplay);
+  }
+
+  if (key === "Enter" || key === ",") {
+    event.preventDefault();
+
+    if (isValidUrl(url)) {
+      errorDisplay.textContent = "";
+      errorDisplay.style.color = "";
+      const tag = createTag(url, tagsContainer);
+      tagsContainer.appendChild(tag);
+      this.value = "";
+    } else {
+      errorDisplay.textContent = "Invalid URL, enter a proper one";
+      errorDisplay.style.color = "red";
+    }
+  }
+});
+
 
 document.getElementById("articleUrlsInput").addEventListener("keydown", function (event) {
   const key = event.key;
@@ -419,10 +470,9 @@ document.getElementById("articleUrlsInput").addEventListener("keydown", function
     const invalidUrls = urls.filter(u => !isValidUrl(u));
 
     if (invalidUrls.length > 0) {
-      output.innerHTML = "Invalid URL(s) ";
+      output.innerHTML = "Invalid URL(s)";
       output.style.color = "red";
-    } 
-    else {
+    } else {
       output.style.color = ""; 
       urls.forEach(url => {
         const tag = createTag(url, output);
@@ -433,17 +483,25 @@ document.getElementById("articleUrlsInput").addEventListener("keydown", function
   }
 });
 
-
-function createTag(text, parent) {
+function createTag(url, parentOutput) {
   const tag = document.createElement("div");
-  tag.className = "tag";
-  tag.textContent = text;
+  tag.className = "tag badge badge-light border border-secondary text-dark p-2 d-flex align-items-center";
 
-  const closeBtn = document.createElement("span");
-  closeBtn.className = "close-btn";
+  const icon = document.createElement("img");
+  icon.style.width = "16px";
+  icon.style.marginRight = "6px";
+
+  const span = document.createElement("span");
+  span.textContent = url;
+
+  const closeBtn = document.createElement("button");
   closeBtn.textContent = "X";
+  closeBtn.className = "btn-close  ms-2";
+  closeBtn.style.fontSize = "10px";
+  closeBtn.onclick = () => parentOutput.removeChild(tag);
 
-  closeBtn.onclick = () => parent.removeChild(tag);
+  tag.appendChild(icon);
+  tag.appendChild(span);
   tag.appendChild(closeBtn);
 
   return tag;
@@ -484,14 +542,15 @@ document.querySelector(".textbox").addEventListener("keydown", function(event) {
 });
 
 function validateLocations() {
-    const locOutput = document.querySelector(".loc");
-    const errorMsg = document.querySelector(".error");
+   const locOutput = document.querySelector(".loc");
+const locInput = document.querySelector(".location input");
 
-    if (locOutput.children.length === 0) {
-        errorMsg.style.display = "block";
-    } else {
-        errorMsg.style.display = "none";
-    }
+if (locOutput.children.length === 0 && locInput.value.trim() === "") {
+    document.querySelector(".location .error").style.display = "block";
+    isValid = false;
+} else {
+    document.querySelector(".location .error").style.display = "none";
+}
 }
 
 
@@ -533,7 +592,10 @@ function validateTags() {
 
     if (tagOutput.children.length === 0) {
         errorMsg.style.display = "block";
+        return false;
     } else {
         errorMsg.style.display = "none";
+        return true;
     }
 }
+
